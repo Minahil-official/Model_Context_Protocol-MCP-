@@ -1,6 +1,11 @@
 from mcp.server.fastmcp import FastMCP
 
 mcp = FastMCP(name = "MCP Practical Server",stateless_http = True)
+# tool integration
+@mcp.tool()
+async def calculate_sum(a: int, b: int) -> int:
+    """Calculate the sum of two integers."""
+    return a + b
 
 docs = {
     "title": "MCP Practical Server",
@@ -8,6 +13,7 @@ docs = {
    'guidelines': "Use the tools and resources wisely.",
    'readme': "This server is for practical purposes only.",
 }
+# Add resources
 @mcp.resource("docs://documents")
 def list_docs():
     """list all available docs"""
